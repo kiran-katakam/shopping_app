@@ -25,8 +25,8 @@ This project is a basic shopping app with essential features like a product list
    ```bash
    git clone https://github.com/yourusername/shopping-app.git
 2. Navigate to the project directory:
-  ```bash
-  cd shopping-app
+     ```bash
+   cd shopping-app
    ```
 3. Run main.dart
    ```bash
@@ -35,7 +35,7 @@ This project is a basic shopping app with essential features like a product list
 
 ##Usage
 
-It doesn't have specific usage i developed to boost myy skills
+It doesn't have specific usage i developed to boost my skills
 
 ##Acknowledgements
 
