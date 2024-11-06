@@ -25,14 +25,13 @@ This project is a basic shopping app with essential features like a product list
    ```bash
    git clone https://github.com/yourusername/shopping-app.git
 2. Navigate to the project directory:
-
   ```bash
   cd shopping-app
-```
+   ```
 3. Run main.dart
-```bash
-flutter run
-```
+   ```bash
+   flutter run
+   ```
 
 ##Usage
 
