@@ -23,7 +23,7 @@ This project is a basic shopping app with essential features like a product list
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/yourusername/shopping-app.git
+   git clone https://github.com/kirankatakam/shopping_app.git
 2. Navigate to the project directory:
      ```bash
    cd shopping-app
