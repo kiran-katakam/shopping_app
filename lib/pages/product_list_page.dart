@@ -11,10 +11,9 @@ class ProductListPage extends StatefulWidget {
 }
 
 class _ProductListPageState extends State<ProductListPage> {
-
   final List<String> filters = const ["All", "Nike", "Adidas", "Puma", "Bata"];
   late String selectedFilter;
-  
+
   @override
   void initState() {
     super.initState();
@@ -23,6 +22,7 @@ class _ProductListPageState extends State<ProductListPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     const border = OutlineInputBorder(
       borderSide: BorderSide(
         color: Color.fromRGBO(222, 225, 225, 1),
@@ -100,30 +100,60 @@ class _ProductListPageState extends State<ProductListPage> {
             ),
           ),
           Expanded(
-            child: ListView.builder(
-              itemCount: products.length,
-              itemBuilder: (context, index) {
-                final product = products[index];
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ProductDetails(product: product);
+            child: size.width > 600
+                ? GridView.builder(
+                    itemCount: products.length,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: 1.5
+                    ),
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetails(product: product,size: size);
+                              },
+                            ),
+                          );
                         },
-                      ),
-                    );
-                  },
-                  child: ProductContainer(
-                    title: product["title"] as String,
-                    price: product["price"] as int,
-                    image: product["imageUrl"] as String,
-                    id: product["id"] as int,
+                        child: ProductContainer(
+                          title: product["title"] as String,
+                          price: product["price"] as int,
+                          image: product["imageUrl"] as String,
+                          id: product["id"] as int,
+                          size: size,
+                        ),
+                      );
+                    },
+                  )
+                : ListView.builder(
+                    itemCount: products.length,
+                    itemBuilder: (context, index) {
+                      final product = products[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ProductDetails(product: product, size: size,);
+                              },
+                            ),
+                          );
+                        },
+                        child: ProductContainer(
+                          title: product["title"] as String,
+                          price: product["price"] as int,
+                          image: product["imageUrl"] as String,
+                          id: product["id"] as int,
+                          size: size,
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
-          )
+          ),
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class ProductContainer extends StatelessWidget {
   final String title, image;
   final int price, id;
+  final Size size;
 
   const ProductContainer({
     super.key,
@@ -10,11 +11,13 @@ class ProductContainer extends StatelessWidget {
     required this.price,
     required this.image,
     required this.id,
+    required this.size,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: size.width > 600 ? 300 : 250,
       margin: const EdgeInsets.all(20),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -37,10 +40,11 @@ class ProductContainer extends StatelessWidget {
           ),
           const SizedBox(height: 5),
           Center(
-              child: Image.asset(
-            image,
-            height: 150,
-          ))
+            child: Image.asset(
+              image,
+              height: size.width > 600 ? 500 : 150,
+            ),
+          ),
         ],
       ),
     );

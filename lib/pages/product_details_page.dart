@@ -4,10 +4,12 @@ import 'package:shopping_app/providers/cart_provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final Map<String, dynamic> product;
+  final Size size;
 
   const ProductDetails({
     super.key,
     required this.product,
+    required this.size,
   });
 
   @override
@@ -16,7 +18,6 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   late int selectedSize = 0;
-
   void onTap() {
     if (selectedSize != 0) {
       Provider.of<CartProvider>(context, listen: false).addProduct(
@@ -31,7 +32,8 @@ class _ProductDetailsState extends State<ProductDetails> {
       );
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("${widget.product["title"]} $selectedSize added to cart"),
+          content:
+              Text("${widget.product["title"]} $selectedSize added to cart"),
           showCloseIcon: true,
           duration: const Duration(milliseconds: 500),
         ),
@@ -68,7 +70,10 @@ class _ProductDetailsState extends State<ProductDetails> {
       body: Column(
         children: [
           const Spacer(),
-          Image.asset(widget.product["imageUrl"] as String),
+          Image.asset(
+            widget.product["imageUrl"] as String,
+            height: widget.size.width > 600 ? 600 : 250,
+          ),
           const Spacer(flex: 2),
           Container(
             height: 250,
@@ -118,7 +123,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                   onPressed: onTap,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.primary,
-                    minimumSize: const Size(double.infinity, 50),
+                    maximumSize: const Size(350, 50),
                   ),
                   child: const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
