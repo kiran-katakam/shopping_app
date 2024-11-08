@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shopping_app/cart_provider.dart';
+import 'package:shopping_app/providers/cart_provider.dart';
 
 class ProductDetails extends StatefulWidget {
   final Map<String, dynamic> product;
@@ -31,7 +31,7 @@ class _ProductDetailsState extends State<ProductDetails> {
       );
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text("${widget.product["title"]} added to cart"),
+          content: Text("${widget.product["title"]} $selectedSize added to cart"),
           showCloseIcon: true,
           duration: const Duration(milliseconds: 500),
         ),
